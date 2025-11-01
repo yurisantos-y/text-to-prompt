@@ -1,0 +1,57 @@
+{
+  "name": "text-to-prompt",
+  "version": "1.0.0",
+  "description": "Convert text from input fields into prompts optimized for AI",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Text to Prompt Contributors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yurisantos-y/text-to-prompt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yurisantos-y/text-to-prompt/issues"
+  },
+  "homepage": "https://github.com/yurisantos-y/text-to-prompt#readme",
+  "keywords": [
+    "browser-extension",
+    "chrome-extension",
+    "firefox-addon",
+    "ai",
+    "prompt",
+    "text-processing",
+    "productivity",
+    "wxt"
+  ],
+  "scripts": {
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "preview": "wxt preview"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "lucide-react": "^0.344.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.2.1"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.260",
+    "@types/node": "^24.9.2",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "@wxt-dev/module-react": "^1.1.0",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "wxt": "^0.19.16"
+  }
+}
