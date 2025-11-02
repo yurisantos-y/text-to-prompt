@@ -28,7 +28,7 @@ export default defineConfig({
   manifest: {
     name: 'Text to Prompt',
     description: 'Convert text from input fields into prompts optimized for AI',
-    version: '1.0.2',
+    version: '0.0.2',
     permissions: ['storage', 'activeTab'],
     // Restrict host permissions to specific API domains only
     host_permissions: [
@@ -37,10 +37,6 @@ export default defineConfig({
     ],
     action: {
       default_title: 'Text to Prompt',
-    },
-    // Content Security Policy to prevent XSS and injection attacks
-    content_security_policy: {
-      extension_pages: "script-src 'self'; object-src 'self'; style-src 'self' 'unsafe-inline';"
     },
     // Make logo accessible to content scripts
     web_accessible_resources: [{
