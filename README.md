@@ -39,7 +39,7 @@ Text to Prompt é uma extensão de navegador desenvolvida com tecnologias modern
 
 ```bash
 # Clone o repositório
-git clone https://github.com/your-username/text-to-prompt.git
+git clone https://github.com/yurisantos-y/text-to-prompt.git
 cd text-to-prompt
 
 # Instale as dependências
@@ -131,15 +131,15 @@ Contribuições são muito bem-vindas! Este é um projeto open source e adorarí
 - Atualize a documentação conforme necessário
 - Mantenha o código consistente com o estilo do projeto
 
-Leia nosso [Guia de Contribuição](CONTRIBUTING.md) para mais detalhes.
+Leia nosso [Guia de Contribuição](arquivos/CONTRIBUTING.md) para mais detalhes.
 
 ## 📝 Documentação
 
-- [Guia de Instalação](INSTALLATION.md)
-- [Visão Geral do Projeto](PROJECT_OVERVIEW.md)
-- [Guia de Testes](GUIA_TESTE_COMPLETO.md)
-- [Comandos Rápidos](COMANDOS_RAPIDOS.md)
-- [Detecção de Campos](DETECCAO_CAMPOS.md)
+- [Guia de Instalação](arquivos/INSTALLATION.md)
+- [Visão Geral do Projeto](arquivos/PROJECT_OVERVIEW.md)
+- [Guia de Testes](arquivos/GUIA_TESTE_COMPLETO.md)
+- [Comandos Rápidos](arquivos/COMANDOS_RAPIDOS.md)
+- [Detecção de Campos](arquivos/DETECCAO_CAMPOS.md)
 
 ## 🛡️ Segurança
 
@@ -153,10 +153,10 @@ Esta extensão implementa múltiplas camadas de segurança:
 - ✅ **Permissões Mínimas** - Apenas APIs necessárias whitelistadas
 
 Para detalhes completos, consulte:
-- [Documentação de Segurança](SECURITY_ENHANCEMENTS.md)
-- [Guia Rápido](SECURITY_QUICK_REFERENCE.md)
+- [Documentação de Segurança](arquivos/SECURITY_ENHANCEMENTS.md)
+- [Guia Rápido](arquivos/SECURITY_QUICK_REFERENCE.md)
 
-Encontrou uma vulnerabilidade de segurança? Por favor, leia nossa [Política de Segurança](SECURITY.md) para saber como reportar.
+Encontrou uma vulnerabilidade de segurança? Por favor, leia nossa [Política de Segurança](arquivos/SECURITY.md) para saber como reportar.
 
 ## 📄 Licença
 

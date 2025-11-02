@@ -1,6 +1,6 @@
 {
   "name": "text-to-prompt",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "Convert text from input fields into prompts optimized for AI",
   "type": "module",
   "license": "Apache-2.0",
