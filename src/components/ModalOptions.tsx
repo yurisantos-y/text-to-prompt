@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { ConfigModal } from '@/components/ConfigModal';
 import { convertText } from '@/utils/api';
 import { secureStorage } from '@/utils/secureStorage';
 import { PromptOption } from '@/types';
@@ -20,6 +21,25 @@ export function ModalOptions({ open, onClose, text, onInsert }: ModalOptionsProp
   const [isConverting, setIsConverting] = useState(false);
   const [error, setError] = useState<string>('');
   const [copied, setCopied] = useState(false);
+  const [showConfigModal, setShowConfigModal] = useState(false);
+  const [isConfigured, setIsConfigured] = useState(false);
+
+  // Check if extension is configured when modal opens
+  useEffect(() => {
+    if (open) {
+      const checkConfiguration = async () => {
+        const settings = await secureStorage.getSettings();
+        const configured = settings?.isConfigured || false;
+        setIsConfigured(configured);
+        
+        // Show config modal if not configured
+        if (!configured) {
+          setShowConfigModal(true);
+        }
+      };
+      checkConfiguration();
+    }
+  }, [open]);
 
   // Reset state when modal opens/closes
   useEffect(() => {
@@ -30,6 +50,7 @@ export function ModalOptions({ open, onClose, text, onInsert }: ModalOptionsProp
       setError('');
       setIsConverting(false);
       setCopied(false);
+      setShowConfigModal(false);
     }
   }, [open]);
 
@@ -67,8 +88,9 @@ export function ModalOptions({ open, onClose, text, onInsert }: ModalOptionsProp
     try {
       const settings = await secureStorage.getSettings();
       if (!settings || !settings.isConfigured) {
-        setError('Extension is not configured. Please set up your API key in the popup.');
+        setError('Extension is not configured. Please configure your API key.');
         setIsConverting(false);
+        setShowConfigModal(true);
         return;
       }
 
@@ -113,8 +135,32 @@ export function ModalOptions({ open, onClose, text, onInsert }: ModalOptionsProp
     setIsConverting(false);
   };
 
+  const handleConfigured = async () => {
+    setIsConfigured(true);
+    setShowConfigModal(false);
+    setError('');
+    
+    // Reset to show options again after configuration
+    setSelectedOption(null);
+  };
+
+  const handleCloseConfigModal = () => {
+    setShowConfigModal(false);
+    // If not configured, close the main modal too
+    if (!isConfigured) {
+      onClose();
+    }
+  };
+
   return (
-    <Dialog open={open} onOpenChange={onClose}>
+    <>
+      <ConfigModal
+        open={showConfigModal}
+        onClose={handleCloseConfigModal}
+        onConfigured={handleConfigured}
+      />
+      
+      <Dialog open={open && !showConfigModal} onOpenChange={onClose}>
       <DialogContent className={selectedOption ? "w-[50vw] max-w-none max-h-[95vh] overflow-y-auto" : "max-w-3xl max-h-[90vh] overflow-y-auto"}>
         <DialogHeader>
           <DialogTitle>
@@ -224,5 +270,6 @@ export function ModalOptions({ open, onClose, text, onInsert }: ModalOptionsProp
         )}
       </DialogContent>
     </Dialog>
+    </>
   );
 }
