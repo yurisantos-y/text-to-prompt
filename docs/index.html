@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade - Text to Prompt</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-top: 20px;
+        }
+
+        h3 {
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            color: #2c3e50;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #e74c3c;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #ecf0f1;
+            margin: 30px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            body {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="content"></div>
+    </div>
+
+    <script>
+        // Conteúdo do markdown
+        const markdown = `# Política de Privacidade - Text to Prompt
+
+**Última atualização**: Novembro 2025
+
+## 1. Introdução
+
+A extensão Text to Prompt ("nós", "nosso", "a extensão") respeita sua privacidade. Esta política descreve como coletamos, usamos e protegemos suas informações quando você usa nossa extensão.
+
+## 2. Dados Coletados
+
+### 2.1 Conteúdo de Texto
+- **Quando**: Apenas quando você clica explicitamente no ícone da extensão em um campo de texto
+- **O que**: Coletamos apenas o texto do campo de texto específico que você selecionou
+- **Por quê**: Para processar e converter o texto conforme solicitado por você
+- **Armazenamento**: O texto não é armazenado permanentemente. É enviado apenas para as APIs dos provedores de IA quando você solicita o processamento.
+
+### 2.2 Configurações do Usuário
+- **Quando**: Quando você configura a extensão pela primeira vez ou altera suas configurações
+- **O que**: Armazenamos localmente:
+  - Provedor de IA selecionado (OpenAI ou Google Gemini)
+  - Chave de API (armazenada de forma criptografada)
+  - Status de configuração
+- **Por quê**: Para permitir que a extensão funcione sem exigir que você insira suas credenciais a cada uso
+- **Armazenamento**: Todos os dados são armazenados localmente no seu dispositivo usando \`chrome.storage.local\`, que é criptografado pelo navegador.
+
+## 3. Como Usamos Seus Dados
+
+### 3.1 Processamento de Texto
+- O texto que você seleciona é enviado **apenas quando você solicita explicitamente** para as APIs oficiais dos provedores de IA:
+  - OpenAI (api.openai.com) - se você escolher OpenAI
+  - Google Gemini (generativelanguage.googleapis.com) - se você escolher Google Gemini
+- O texto é processado pelos provedores de IA e a resposta é retornada para você
+- Não modificamos, analisamos ou armazenamos o conteúdo do texto além do necessário para processar sua solicitação
+
+### 3.2 Armazenamento Local
+- Suas configurações (incluindo chave de API) são armazenadas apenas localmente no seu dispositivo
+- Utilizamos \`chrome.storage.local\`, que é criptografado pelo Chrome
+- Adicionamos uma camada adicional de ofuscação (Base64) para proteção extra
+- Nenhum dado é enviado para nossos servidores ou qualquer servidor de terceiros, exceto as APIs dos provedores de IA durante o processamento
+
+## 4. Dados NÃO Coletados
+
+Garantimos que **NÃO coletamos**:
+- ❌ Histórico de navegação
+- ❌ URLs visitadas
+- ❌ Informações pessoais (nome, email, endereço)
+- ❌ Dados de formulários além do campo específico que você seleciona
+- ❌ Dados de outras abas ou páginas
+- ❌ Cookies ou dados de sessão
+- ❌ Informações de localização
+- ❌ Dados de atividade do usuário (cliques, rolagem, etc.) além do necessário para detectar campos de texto
+
+## 5. Compartilhamento de Dados
+
+### 5.1 Não Vendemos ou Alugamos Dados
+- Não vendemos, alugamos ou monetizamos seus dados de forma alguma
+- Não compartilhamos seus dados com anunciantes ou empresas de marketing
+
+### 5.2 APIs de Provedores de IA
+- Quando você solicita o processamento de texto, o conteúdo é enviado para a API do provedor escolhido (OpenAI ou Google Gemini)
+- Essas empresas têm suas próprias políticas de privacidade:
+  - [OpenAI Privacy Policy](https://openai.com/policies/privacy-policy)
+  - [Google Privacy Policy](https://policies.google.com/privacy)
+
+### 5.3 Casos Legais
+- Podemos divulgar informações se exigido por lei ou em resposta a processos legais válidos
+
+## 6. Segurança dos Dados
+
+Implementamos múltiplas camadas de segurança para proteger seus dados:
+
+- **Criptografia**: Dados armazenados localmente são criptografados pelo Chrome e ofuscados adicionalmente
+- **Sanitização**: Todas as entradas são sanitizadas para prevenir ataques XSS
+- **Validação**: URLs e formatos de API keys são validados rigorosamente
+- **Rate Limiting**: Limite de 10 requisições por minuto para prevenir abuso
+- **HTTPS Obrigatório**: Todas as comunicações usam apenas HTTPS
+- **Permissões Mínimas**: Solicitamos apenas as permissões absolutamente necessárias
+
+Para mais detalhes técnicos sobre segurança, consulte nosso [Documento de Segurança](SECURITY.md).
+
+## 7. Seus Direitos
+
+Você tem o direito de:
+- **Acessar**: Ver suas configurações armazenadas através da interface da extensão
+- **Modificar**: Alterar ou remover suas configurações a qualquer momento
+- **Excluir**: Remover todas as configurações desinstalando a extensão ou limpando os dados através do painel de configurações
+- **Recusar**: Não usar a extensão se não concordar com esta política
+
+## 8. Retenção de Dados
+
+- **Configurações**: Armazenadas localmente até que você as remova ou desinstale a extensão
+- **Texto Processado**: Não é armazenado permanentemente. É processado e descartado após a conversão
+- **Dados de API**: Sujeitos às políticas de retenção dos provedores de IA (OpenAI e Google)
+
+## 9. Menores de Idade
+
+Nossa extensão não coleta intencionalmente dados de menores de 13 anos. Se você é pai/mãe e acredita que seu filho forneceu dados, entre em contato conosco.
+
+## 10. Mudanças nesta Política
+
+Podemos atualizar esta política periodicamente. Notificaremos sobre mudanças significativas através de:
+- Atualização da data "Última atualização" no topo desta página
+- Notificação na extensão (se aplicável)
+
+## 11. Contato
+
+Para questões sobre privacidade:
+- **Email**: yuri01.sp@gmail.com
+- **GitHub**: [https://github.com/yurisantos-y/text-to-prompt](https://github.com/yurisantos-y/text-to-prompt)
+- **Issues**: [Reportar um problema](https://github.com/yurisantos-y/text-to-prompt/issues)
+
+---
+
+**Resumo**: Esta extensão coleta apenas o texto que você seleciona explicitamente e suas configurações locais. Nenhum dado é vendido ou compartilhado com terceiros, exceto para processamento através das APIs oficiais dos provedores de IA quando você solicita.`;
+
+        // Renderizar o markdown
+        document.getElementById('content').innerHTML = marked.parse(markdown);
+    </script>
+</body>
+</html>
+
