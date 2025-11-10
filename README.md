@@ -23,6 +23,7 @@ Text to Prompt é uma extensão de navegador desenvolvida com tecnologias modern
 
 - 🎯 **Detecção Automática** - Identifica campos de texto em qualquer página web
 - 🔄 **Múltiplos Modelos** - Vários templates de prompt pré-configurados
+- 🧾 **Token-Oriented Object Notation (TOON)** - Converta texto em TOON seguindo a especificação oficial (spec v1.5) para prompts eficientes em LLMs
 - ⚙️ **Personalização** - Configure prompts customizados para suas necessidades
 - 🚀 **Performance** - Execução rápida e eficiente
 - 🌐 **Multi-browser** - Suporte para Chrome e Firefox

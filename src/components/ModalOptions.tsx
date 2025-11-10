@@ -77,6 +77,11 @@ export function ModalOptions({ open, onClose, text, onInsert }: ModalOptionsProp
       label: 'Process Text → JSON (Multilingual)',
       description: 'Enhance and improve your text in its original language, then generate JSON with English keys',
     },
+    {
+      value: 'text-to-toon',
+      label: 'Process Text → TOON',
+      description: 'Convert your text into Token-Oriented Object Notation (TOON) using the official specification for LLM-efficient prompts',
+    },
   ];
 
   const handleConvert = async (option: PromptOption) => {

@@ -57,6 +57,31 @@ function cleanAIResponse(text: string, option: PromptOption): string {
     return cleaned.trim();
   }
   
+  if (option === 'text-to-toon') {
+    let cleaned = text.trim();
+
+    // Remove markdown code fences if present
+    const fencedMatch = cleaned.match(/```(?:toon)?\s*\n([\s\S]*?)```/i);
+    if (fencedMatch) {
+      cleaned = fencedMatch[1].trim();
+    }
+
+    // Remove any stray fences at start or end
+    cleaned = cleaned.replace(/^```(?:toon)?[\s\n]*/gi, '');
+    cleaned = cleaned.replace(/[\s\n]*```$/g, '');
+    
+    // Normalize line endings
+    cleaned = cleaned.replace(/\r\n/g, '\n');
+    
+    // Remove trailing spaces from lines (TOON spec requirement)
+    cleaned = cleaned.split('\n').map(line => line.trimEnd()).join('\n');
+    
+    // Remove excessive blank lines but keep structure
+    cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
+
+    return cleaned.trim();
+  }
+  
   // For JSON responses, ensure we only have valid JSON
   if (option.includes('json')) {
     // Find the first { and last } to extract only the JSON
@@ -81,6 +106,8 @@ function getSystemMessage(option: PromptOption): string {
     case 'text-to-json-english-prompt':
     case 'text-to-json-prompt':
       return 'You are a helpful AI assistant specialized in JSON generation. Follow instructions precisely and output ONLY valid JSON without any text before or after. Never include explanations, markdown code blocks, or any other text - just pure JSON.';
+    case 'text-to-toon':
+      return 'You are a TOON format specialist. Output ONLY valid TOON (spec v1.5) with NO markdown, explanations, or commentary.\n\nKEY RULES:\n1. 2-space indentation\n2. Objects: key: value (nest with indentation)\n3. Primitive arrays: ALWAYS inline - tags[3]: a,b,c\n4. Uniform object arrays: Tabular - users[2]{id,name}: with rows\n5. Mixed arrays: Dash-list with "- "\n6. Quote strings with: comma, colon, spaces at edges, or looking like numbers/booleans\n7. Arrays with complex strings: quote each element - modules[2]: "Item A (x, y)","Item B"\n8. [N] must match exact count\n9. NO trailing spaces\n10. NO dash-lists for primitive arrays';
     default:
       return 'You are a helpful AI assistant. Follow instructions precisely and provide direct, substantive responses. Never start with acknowledgments. Start immediately with the actual content requested. Output exactly what is asked without preambles or meta-commentary.';
   }
@@ -143,6 +170,68 @@ Instructions:
 - Properly encode and escape special characters for the original language
 - If the input is a simple request or note, expand it with relevant details and structure while maintaining the original language
 - Return ONLY the JSON object, no explanations or additional text before or after
+
+User request:
+`;
+    case 'text-to-toon':
+      return `You are a TOON format expert. Convert the user's request into valid Token-Oriented Object Notation (TOON) following spec v1.5.
+
+CRITICAL RULES:
+1. Output ONLY raw TOON - NO markdown fences (\`\`\`), NO explanations, NO commentary
+2. Use 2-space indentation for nested structures
+3. NO trailing spaces on any line
+
+OBJECTS:
+  key: value
+  nested:
+    subkey: value
+
+ARRAYS - THREE FORMATS:
+
+A) PRIMITIVE ARRAYS (strings, numbers, booleans) - ALWAYS INLINE:
+   ✓ CORRECT: tags[3]: reading,gaming,coding
+   ✓ CORRECT: skills[2]: Flutter,Dart
+   ✓ CORRECT: modules[3]: "User Management","Payment Processing","GPS Tracking"
+   ✗ WRONG: Never use dash-list (- ) for primitive arrays
+
+B) UNIFORM OBJECT ARRAYS (same fields, primitives only) - TABULAR:
+   users[2]{id,name,role}:
+     1,Alice,admin
+     2,Bob,user
+   
+   Rules:
+   - All objects must have identical fields
+   - Only primitive values (string, number, boolean, null)
+   - [N] must match row count exactly
+
+C) NON-UNIFORM/MIXED ARRAYS - DASH-LIST:
+   items[3]:
+     - 42
+     - name: Test
+     - tags[2]: a,b
+   
+   Use ONLY when array has different types or non-uniform objects
+
+QUOTING RULES:
+Quote strings when they contain:
+  - Comma: "hello, world"
+  - Colon: "key: value"
+  - Leading/trailing spaces: " text "
+  - Look like number/boolean/null: "123", "true", "null"
+  - Start with "- ": "- item"
+  - Empty: ""
+  - Quotes or backslash (escape them): "say \\"hi\\""
+
+DON'T quote:
+  - Plain strings: hello, world_123, user-name
+  - Numbers: 42, 3.14, -10
+  - Booleans: true, false
+  - Null: null
+
+CRITICAL: If a primitive array contains strings with commas/colons/spaces, quote each element:
+  modules[3]: "User Management (Auth, Profile)","Payment System","GPS Tracking"
+
+[N] length markers MUST be exact. Count carefully!
 
 User request:
 `;

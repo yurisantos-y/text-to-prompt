@@ -5,7 +5,8 @@ export type AIProvider = 'openai' | 'gemini';
 export type PromptOption = 
   | 'text-to-english-prompt'
   | 'text-to-json-english-prompt'
-  | 'text-to-json-prompt';
+  | 'text-to-json-prompt'
+  | 'text-to-toon';
 
 // Settings stored in localStorage
 export interface Settings {
